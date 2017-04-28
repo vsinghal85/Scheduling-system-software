@@ -1,0 +1,2841 @@
+  [1m[35m (86.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (95.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateEvents (20160814032341)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "start" datetime, "end" datetime, "color" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160814032341"]]
+  [1m[35m (105.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-04-27 03:14:35 UTC], ["updated_at", 2017-04-27 03:14:35 UTC]]
+  [1m[35m (90.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2017-04-26 23:14:46 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 5742ms (Views: 5729.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493262893214" for 127.0.0.1 at 2017-04-26 23:14:53 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493262893214"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE ("events"."start" BETWEEN ? AND ?)[0m  [["start", "2017-03-26"], ["start", "2017-05-07"]]
+  Rendered events/index.json.jbuilder (75.7ms)
+Completed 200 OK in 94ms (Views: 80.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/events/new?_=1493262893215" for 127.0.0.1 at 2017-04-26 23:14:58 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493262893215"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (657.6ms)
+  Rendered events/_new.html.erb (662.7ms)
+  Rendered events/new.js.erb (669.5ms)
+Completed 200 OK in 699ms (Views: 675.8ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-26 23:15:27 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"this is a new event", "date_range"=>"03/28/2017 - 03/31/2017", "start"=>"2017-03-28 00:00", "end"=>"2017-03-31 00:00", "color"=>"red"}, "commit"=>"Create Event"}
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "this is a new event"], ["start", 2017-03-28 00:00:00 UTC], ["end", 2017-03-31 00:00:00 UTC], ["color", "red"], ["created_at", 2017-04-27 03:15:27 UTC], ["updated_at", 2017-04-27 03:15:27 UTC]]
+  [1m[35m (415.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.6ms)
+  Rendered events/create.js.erb (8.8ms)
+Completed 200 OK in 447ms (Views: 15.7ms | ActiveRecord: 417.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-26 23:21:26 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.3ms)
+  Rendered layouts/_messages.html.erb (2.2ms)
+Completed 200 OK in 487ms (Views: 475.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493263286897" for 127.0.0.1 at 2017-04-26 23:21:27 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493263286897"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE ("events"."start" BETWEEN ? AND ?)[0m  [["start", "2017-03-26"], ["start", "2017-05-07"]]
+  Rendered events/index.json.jbuilder (28.6ms)
+Completed 200 OK in 56ms (Views: 31.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-26 23:21:33 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 127ms (Views: 123.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493263286898" for 127.0.0.1 at 2017-04-26 23:21:33 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493263286898"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE ("events"."start" BETWEEN ? AND ?)[0m  [["start", "2017-03-26"], ["start", "2017-05-07"]]
+  Rendered events/index.json.jbuilder (4.1ms)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/new?_=1493263286899" for 127.0.0.1 at 2017-04-26 23:21:42 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493263286899"}
+  Rendering events/new.js.erb
+Started GET "/events/new?_=1493263286900" for 127.0.0.1 at 2017-04-26 23:21:42 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493263286900"}
+  Rendered events/_form.html.erb (566.2ms)
+  Rendering events/new.js.erb
+  Rendered events/_new.html.erb (589.7ms)
+  Rendered events/_form.html.erb (9.7ms)
+  Rendered events/new.js.erb (615.1ms)
+  Rendered events/_new.html.erb (15.5ms)
+Completed 200 OK in 629ms (Views: 621.8ms | ActiveRecord: 0.0ms)
+
+
+  Rendered events/new.js.erb (22.3ms)
+Completed 200 OK in 44ms (Views: 31.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-26 23:22:04 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"another event", "date_range"=>"04/26/2017 - 04/27/2017", "start"=>"2017-04-26 00:00", "end"=>"2017-04-27 00:00", "color"=>"green"}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "another event"], ["start", 2017-04-26 00:00:00 UTC], ["end", 2017-04-27 00:00:00 UTC], ["color", "green"], ["created_at", 2017-04-27 03:22:04 UTC], ["updated_at", 2017-04-27 03:22:04 UTC]]
+  [1m[35m (224.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.6ms)
+  Rendered events/create.js.erb (8.2ms)
+Completed 200 OK in 253ms (Views: 15.4ms | ActiveRecord: 225.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-26 23:22:16 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 79ms (Views: 77.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493263336748" for 127.0.0.1 at 2017-04-26 23:22:17 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493263336748"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE ("events"."start" BETWEEN ? AND ?)[0m  [["start", "2017-03-26"], ["start", "2017-05-07"]]
+  Rendered events/index.json.jbuilder (7.1ms)
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/new?_=1493263336749" for 127.0.0.1 at 2017-04-26 23:22:25 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493263336749"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.2ms)
+  Rendered events/_new.html.erb (15.0ms)
+  Rendered events/new.js.erb (19.9ms)
+Completed 200 OK in 35ms (Views: 27.4ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/events/1?method=patch" for 127.0.0.1 at 2017-04-26 23:22:36 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"1", "start"=>"2017-04-04", "end"=>"2017-04-07"}, "method"=>"patch", "id"=>"1"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-04 00:00:00 UTC], ["end", 2017-04-07 00:00:00 UTC], ["updated_at", 2017-04-27 03:22:36 UTC], ["id", 1]]
+  [1m[35m (154.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (2.0ms)
+  Rendered events/update.js.erb (8.1ms)
+Completed 200 OK in 188ms (Views: 13.5ms | ActiveRecord: 156.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-26 23:22:37 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 82ms (Views: 80.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493263358137" for 127.0.0.1 at 2017-04-26 23:22:38 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493263358137"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE ("events"."start" BETWEEN ? AND ?)[0m  [["start", "2017-03-26"], ["start", "2017-05-07"]]
+  Rendered events/index.json.jbuilder (3.4ms)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/1/edit?_=1493263358138" for 127.0.0.1 at 2017-04-26 23:22:49 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493263358138", "id"=>"1"}
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.8ms)
+  Rendered events/_edit.html.erb (19.1ms)
+  Rendered events/edit.js.erb (27.8ms)
+Completed 200 OK in 47ms (Views: 36.7ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/events/1" for 127.0.0.1 at 2017-04-26 23:22:55 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 1]]
+  [1m[35m (113.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/destroy.js.erb
+  Rendered events/destroy.js.erb (0.7ms)
+Completed 200 OK in 132ms (Views: 8.5ms | ActiveRecord: 113.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-26 23:48:37 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 70ms (Views: 68.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493264918146" for 127.0.0.1 at 2017-04-26 23:48:38 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493264918146"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (12.2ms)
+Completed 200 OK in 19ms (Views: 13.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/events/new?_=1493264918147" for 127.0.0.1 at 2017-04-26 23:48:43 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918147"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.2ms)
+  Rendered events/_new.html.erb (14.7ms)
+  Rendered events/new.js.erb (19.6ms)
+Completed 200 OK in 33ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-26 23:49:03 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"new event", "date_range"=>"02/21/2017 - 03/29/2017", "start"=>"2017-02-21 00:00", "end"=>"2017-03-29 00:00", "color"=>"black"}, "commit"=>"Create Event"}
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "new event"], ["start", 2017-02-21 00:00:00 UTC], ["end", 2017-03-29 00:00:00 UTC], ["color", "black"], ["created_at", 2017-04-27 03:49:03 UTC], ["updated_at", 2017-04-27 03:49:03 UTC]]
+  [1m[35m (205.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.5ms)
+  Rendered events/create.js.erb (7.6ms)
+Completed 200 OK in 228ms (Views: 13.3ms | ActiveRecord: 206.4ms)
+
+
+Started GET "/events.json?start=2017-02-26&end=2017-04-09&_=1493264918148" for 127.0.0.1 at 2017-04-26 23:49:07 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-02-26", "end"=>"2017-04-09", "_"=>"1493264918148"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.1ms)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events.json?start=2017-01-29&end=2017-03-12&_=1493264918149" for 127.0.0.1 at 2017-04-26 23:49:11 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-01-29", "end"=>"2017-03-12", "_"=>"1493264918149"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.1ms)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events.json?start=2017-02-26&end=2017-04-09&_=1493264918150" for 127.0.0.1 at 2017-04-26 23:49:15 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-02-26", "end"=>"2017-04-09", "_"=>"1493264918150"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (2.8ms)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/new?_=1493264918151" for 127.0.0.1 at 2017-04-26 23:49:16 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918151"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (8.9ms)
+  Rendered events/_new.html.erb (13.5ms)
+  Rendered events/new.js.erb (18.8ms)
+Completed 200 OK in 33ms (Views: 25.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/3/edit?_=1493264918152" for 127.0.0.1 at 2017-04-26 23:49:19 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493264918152", "id"=>"3"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.6ms)
+  Rendered events/_edit.html.erb (14.4ms)
+  Rendered events/edit.js.erb (20.5ms)
+Completed 200 OK in 49ms (Views: 27.5ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/events/3" for 127.0.0.1 at 2017-04-26 23:49:22 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"3"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 3]]
+  [1m[35m (78.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/destroy.js.erb
+  Rendered events/destroy.js.erb (0.6ms)
+Completed 200 OK in 96ms (Views: 7.0ms | ActiveRecord: 79.3ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493264918153" for 127.0.0.1 at 2017-04-26 23:49:34 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493264918153"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (2.3ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/new?_=1493264918154" for 127.0.0.1 at 2017-04-26 23:49:47 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918154"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.4ms)
+  Rendered events/_new.html.erb (15.2ms)
+  Rendered events/new.js.erb (20.5ms)
+Completed 200 OK in 36ms (Views: 30.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493264918155" for 127.0.0.1 at 2017-04-27 02:54:08 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918155"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.9ms)
+  Rendered events/_new.html.erb (14.8ms)
+  Rendered events/new.js.erb (19.9ms)
+Completed 200 OK in 35ms (Views: 26.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493264918156" for 127.0.0.1 at 2017-04-27 02:54:15 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918156"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (11.1ms)
+  Rendered events/_new.html.erb (16.2ms)
+  Rendered events/new.js.erb (21.0ms)
+Completed 200 OK in 37ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-27 02:54:56 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"target event", "date_range"=>"03/01/2017 - 03/01/2017", "start"=>"2017-03-01 02:30", "end"=>"2017-03-01 05:30", "color"=>"black"}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "target event"], ["start", 2017-03-01 02:30:00 UTC], ["end", 2017-03-01 05:30:00 UTC], ["color", "black"], ["created_at", 2017-04-27 06:54:56 UTC], ["updated_at", 2017-04-27 06:54:56 UTC]]
+  [1m[35m (220.4ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.3ms)
+  Rendered events/create.js.erb (6.6ms)
+Completed 200 OK in 251ms (Views: 13.3ms | ActiveRecord: 220.9ms)
+
+
+Started GET "/events.json?start=2017-02-26&end=2017-04-09&_=1493264918157" for 127.0.0.1 at 2017-04-27 02:55:01 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-02-26", "end"=>"2017-04-09", "_"=>"1493264918157"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.0ms)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493264918158" for 127.0.0.1 at 2017-04-27 02:55:03 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493264918158"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.3ms)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493264918159" for 127.0.0.1 at 2017-04-27 02:55:09 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918159"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (11.7ms)
+  Rendered events/_new.html.erb (16.6ms)
+  Rendered events/new.js.erb (22.4ms)
+Completed 200 OK in 34ms (Views: 28.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-04-27 02:56:10 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+Completed 406 Not Acceptable in 29ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::UnknownFormat - EventsController#index is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []:
+  actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:43:in `default_render'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+  puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+  puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+  puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+  puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+
+Started POST "/__better_errors/c7dc17cdb2b935d5/variables" for 127.0.0.1 at 2017-04-27 02:56:10 -0400
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+Started GET "/events" for 127.0.0.1 at 2017-04-27 02:56:16 -0400
+Processing by EventsController#index as HTML
+Completed 406 Not Acceptable in 17ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::UnknownFormat - EventsController#index is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []:
+  actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:43:in `default_render'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+  puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+  puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+  puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+  puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+
+Started POST "/__better_errors/1028ac3d4910be11/variables" for 127.0.0.1 at 2017-04-27 02:56:16 -0400
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+Started GET "/events/new?_=1493264918160" for 127.0.0.1 at 2017-04-27 02:56:48 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918160"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (566.3ms)
+  Rendered events/_new.html.erb (571.6ms)
+  Rendered events/new.js.erb (578.2ms)
+Completed 200 OK in 595ms (Views: 589.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493264918161" for 127.0.0.1 at 2017-04-27 02:56:51 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918161"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.4ms)
+  Rendered events/_new.html.erb (15.0ms)
+  Rendered events/new.js.erb (20.2ms)
+Completed 200 OK in 35ms (Views: 26.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493264918162" for 127.0.0.1 at 2017-04-27 03:01:42 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918162"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.6ms)
+  Rendered events/_new.html.erb (15.3ms)
+  Rendered events/new.js.erb (20.9ms)
+Completed 200 OK in 36ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/2/edit?_=1493264918163" for 127.0.0.1 at 2017-04-27 03:08:04 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493264918163", "id"=>"2"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.0ms)
+  Rendered events/_edit.html.erb (17.8ms)
+  Rendered events/edit.js.erb (23.1ms)
+Completed 200 OK in 43ms (Views: 30.2ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/events/2" for 127.0.0.1 at 2017-04-27 03:08:16 -0400
+Processing by EventsController#update as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"another event", "date_range"=>"04/26/2017 - 04/27/2017", "start"=>"2017-04-26 07:00", "end"=>"2017-04-27 00:00", "color"=>"green"}, "commit"=>"Update Event", "id"=>"2"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-26 07:00:00 UTC], ["updated_at", 2017-04-27 07:08:16 UTC], ["id", 2]]
+  [1m[35m (653.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (3.4ms)
+  Rendered events/update.js.erb (10.7ms)
+Completed 200 OK in 685ms (Views: 16.6ms | ActiveRecord: 653.8ms)
+
+
+Started GET "/events/new?_=1493264918164" for 127.0.0.1 at 2017-04-27 03:08:20 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493264918164"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.7ms)
+  Rendered events/_new.html.erb (14.5ms)
+  Rendered events/new.js.erb (19.9ms)
+Completed 200 OK in 31ms (Views: 26.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-27 03:08:34 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"random event", "date_range"=>"04/19/2017 - 04/20/2017", "start"=>"2017-04-19 00:00", "end"=>"2017-04-20 00:00", "color"=>"black"}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "random event"], ["start", 2017-04-19 00:00:00 UTC], ["end", 2017-04-20 00:00:00 UTC], ["color", "black"], ["created_at", 2017-04-27 07:08:34 UTC], ["updated_at", 2017-04-27 07:08:34 UTC]]
+  [1m[35m (191.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.9ms)
+  Rendered events/create.js.erb (7.9ms)
+Completed 200 OK in 224ms (Views: 23.1ms | ActiveRecord: 192.0ms)
+
+
+Started GET "/events/5/edit?_=1493264918165" for 127.0.0.1 at 2017-04-27 03:08:38 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493264918165", "id"=>"5"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.5ms)
+  Rendered events/_edit.html.erb (15.2ms)
+  Rendered events/edit.js.erb (20.1ms)
+Completed 200 OK in 37ms (Views: 28.2ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/events/5" for 127.0.0.1 at 2017-04-27 03:08:51 -0400
+Processing by EventsController#update as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"random event", "date_range"=>"04/19/2017 - 04/20/2017", "start"=>"2017-04-19 00:00", "end"=>"2017-04-20 01:00", "color"=>"black"}, "commit"=>"Update Event", "id"=>"5"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "events" SET "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["end", 2017-04-20 01:00:00 UTC], ["updated_at", 2017-04-27 07:08:51 UTC], ["id", 5]]
+  [1m[35m (168.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (1.6ms)
+  Rendered events/update.js.erb (8.0ms)
+Completed 200 OK in 193ms (Views: 13.4ms | ActiveRecord: 169.9ms)
+
+
+Started GET "/events/5/edit?_=1493264918166" for 127.0.0.1 at 2017-04-27 03:08:54 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493264918166", "id"=>"5"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (12.0ms)
+  Rendered events/_edit.html.erb (16.5ms)
+  Rendered events/edit.js.erb (23.1ms)
+Completed 200 OK in 39ms (Views: 31.8ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/events/5" for 127.0.0.1 at 2017-04-27 03:09:11 -0400
+Processing by EventsController#update as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"random event", "date_range"=>"04/19/2017 - 04/20/2017", "start"=>"2017-04-19 00:00", "end"=>"2017-04-20 01:00", "color"=>"black"}, "commit"=>"Update Event", "id"=>"5"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (1.6ms)
+  Rendered events/update.js.erb (7.3ms)
+Completed 200 OK in 26ms (Views: 13.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/5/edit?_=1493264918167" for 127.0.0.1 at 2017-04-27 03:09:13 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493264918167", "id"=>"5"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.9ms)
+  Rendered events/_edit.html.erb (16.8ms)
+  Rendered events/edit.js.erb (21.9ms)
+Completed 200 OK in 37ms (Views: 29.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:14:22 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (2.8ms)
+  Rendered layouts/_messages.html.erb (1.0ms)
+Completed 200 OK in 711ms (Views: 709.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277263879" for 127.0.0.1 at 2017-04-27 03:14:24 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277263879"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (8.4ms)
+Completed 200 OK in 12ms (Views: 10.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events/new?_=1493277263880" for 127.0.0.1 at 2017-04-27 03:14:25 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493277263880"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (16.3ms)
+  Rendered events/_new.html.erb (22.5ms)
+  Rendered events/new.js.erb (30.7ms)
+Completed 200 OK in 47ms (Views: 40.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:14:54 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 280ms (Views: 278.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277295133" for 127.0.0.1 at 2017-04-27 03:14:55 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277295133"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.2ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/new?_=1493277295134" for 127.0.0.1 at 2017-04-27 03:14:58 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493277295134"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (11.0ms)
+  Rendered events/_new.html.erb (15.5ms)
+  Rendered events/new.js.erb (20.8ms)
+Completed 200 OK in 35ms (Views: 27.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493277295135" for 127.0.0.1 at 2017-04-27 03:15:02 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493277295135"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.9ms)
+  Rendered events/_new.html.erb (15.5ms)
+  Rendered events/new.js.erb (21.4ms)
+Completed 200 OK in 35ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:15:15 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 101ms (Views: 99.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277315824" for 127.0.0.1 at 2017-04-27 03:15:16 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277315824"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.6ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493277315825" for 127.0.0.1 at 2017-04-27 03:15:17 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493277315825"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.6ms)
+  Rendered events/_new.html.erb (16.1ms)
+  Rendered events/new.js.erb (21.8ms)
+Completed 200 OK in 33ms (Views: 27.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-27 03:15:26 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"random event", "date_range"=>"04/19/2017 - 04/20/2017", "start"=>"2017-04-19 00:00", "end"=>"2017-04-20 00:00", "color"=>"black"}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "random event"], ["start", 2017-04-19 00:00:00 UTC], ["end", 2017-04-20 00:00:00 UTC], ["color", "black"], ["created_at", 2017-04-27 07:15:26 UTC], ["updated_at", 2017-04-27 07:15:26 UTC]]
+  [1m[35m (166.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.5ms)
+  Rendered events/create.js.erb (7.7ms)
+Completed 200 OK in 189ms (Views: 13.2ms | ActiveRecord: 167.2ms)
+
+
+Started GET "/events/6/edit?_=1493277315826" for 127.0.0.1 at 2017-04-27 03:15:29 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277315826", "id"=>"6"}
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (15.3ms)
+  Rendered events/_edit.html.erb (23.2ms)
+  Rendered events/edit.js.erb (31.1ms)
+Completed 200 OK in 45ms (Views: 37.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events/5/edit?_=1493277315827" for 127.0.0.1 at 2017-04-27 03:15:33 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277315827", "id"=>"5"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.1ms)
+  Rendered events/_edit.html.erb (14.8ms)
+  Rendered events/edit.js.erb (19.9ms)
+Completed 200 OK in 37ms (Views: 28.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/2/edit?_=1493277315828" for 127.0.0.1 at 2017-04-27 03:15:37 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277315828", "id"=>"2"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.7ms)
+  Rendered events/_edit.html.erb (15.6ms)
+  Rendered events/edit.js.erb (21.4ms)
+Completed 200 OK in 39ms (Views: 30.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:15:49 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 75ms (Views: 74.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277350204" for 127.0.0.1 at 2017-04-27 03:15:50 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277350204"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.2ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/6/edit?_=1493277350205" for 127.0.0.1 at 2017-04-27 03:15:52 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277350205", "id"=>"6"}
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.9ms)
+  Rendered events/_edit.html.erb (19.2ms)
+  Rendered events/edit.js.erb (26.7ms)
+Completed 200 OK in 44ms (Views: 35.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events/2/edit?_=1493277350206" for 127.0.0.1 at 2017-04-27 03:15:57 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277350206", "id"=>"2"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.7ms)
+  Rendered events/_edit.html.erb (15.8ms)
+  Rendered events/edit.js.erb (21.0ms)
+Completed 200 OK in 36ms (Views: 28.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:16:05 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 109ms (Views: 108.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277350207" for 127.0.0.1 at 2017-04-27 03:16:06 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277350207"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.2ms)
+Completed 200 OK in 8ms (Views: 6.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:16:07 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 120ms (Views: 116.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277350208" for 127.0.0.1 at 2017-04-27 03:16:08 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277350208"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (6.6ms)
+Completed 200 OK in 12ms (Views: 9.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:16:08 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 79ms (Views: 77.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277350209" for 127.0.0.1 at 2017-04-27 03:16:09 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277350209"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.0ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-27 03:16:32 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 100ms (Views: 98.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277350210" for 127.0.0.1 at 2017-04-27 03:16:33 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277350210"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (7.6ms)
+Completed 200 OK in 13ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events.json?start=2017-04-30&end=2017-06-11&_=1493277350211" for 127.0.0.1 at 2017-04-27 03:16:46 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-04-30", "end"=>"2017-06-11", "_"=>"1493277350211"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.8ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493277350212" for 127.0.0.1 at 2017-04-27 03:16:50 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493277350212"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (6.6ms)
+Completed 200 OK in 12ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493277350213" for 127.0.0.1 at 2017-04-27 03:17:00 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493277350213"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (15.3ms)
+  Rendered events/_new.html.erb (20.3ms)
+  Rendered events/new.js.erb (26.1ms)
+Completed 200 OK in 38ms (Views: 32.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493277350214" for 127.0.0.1 at 2017-04-27 03:17:04 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493277350214"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.4ms)
+  Rendered events/_new.html.erb (14.6ms)
+  Rendered events/new.js.erb (21.6ms)
+Completed 200 OK in 40ms (Views: 32.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/5/edit?_=1493277350215" for 127.0.0.1 at 2017-04-27 03:17:08 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277350215", "id"=>"5"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.1ms)
+  Rendered events/_edit.html.erb (19.6ms)
+  Rendered events/edit.js.erb (25.3ms)
+Completed 200 OK in 43ms (Views: 34.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/5/edit?_=1493277350216" for 127.0.0.1 at 2017-04-27 03:34:11 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277350216", "id"=>"5"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.7ms)
+  Rendered events/_edit.html.erb (14.7ms)
+  Rendered events/edit.js.erb (21.4ms)
+Completed 200 OK in 39ms (Views: 30.3ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/events/5" for 127.0.0.1 at 2017-04-27 03:34:14 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"5"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 5]]
+  [1m[35m (111.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/destroy.js.erb
+  Rendered events/destroy.js.erb (0.6ms)
+Completed 200 OK in 129ms (Views: 7.5ms | ActiveRecord: 113.4ms)
+
+
+Started DELETE "/events/5" for 127.0.0.1 at 2017-04-27 03:34:22 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"5"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Event with 'id'=5:
+  activerecord (5.0.0.1) lib/active_record/core.rb:173:in `find'
+  app/controllers/events_controller.rb:33:in `set_event'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:150:in `block (2 levels) in halting_and_conditional'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:151:in `block in halting_and_conditional'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+  puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+  puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+  puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+  puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+
+Started DELETE "/events/5" for 127.0.0.1 at 2017-04-27 03:34:26 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"5"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Event with 'id'=5:
+  activerecord (5.0.0.1) lib/active_record/core.rb:173:in `find'
+  app/controllers/events_controller.rb:33:in `set_event'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:150:in `block (2 levels) in halting_and_conditional'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:151:in `block in halting_and_conditional'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+  puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+  puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+  puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+  puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+
+Started DELETE "/events/5" for 127.0.0.1 at 2017-04-27 03:34:39 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"5"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Event with 'id'=5:
+  activerecord (5.0.0.1) lib/active_record/core.rb:173:in `find'
+  app/controllers/events_controller.rb:33:in `set_event'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:150:in `block (2 levels) in halting_and_conditional'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:151:in `block in halting_and_conditional'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+  puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+  puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+  puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+  puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+
+Started GET "/events/6/edit?_=1493277350217" for 127.0.0.1 at 2017-04-27 03:34:43 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493277350217", "id"=>"6"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.0ms)
+  Rendered events/_edit.html.erb (15.9ms)
+  Rendered events/edit.js.erb (21.6ms)
+Completed 200 OK in 34ms (Views: 28.2ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/events/6" for 127.0.0.1 at 2017-04-27 03:34:45 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"6"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 6]]
+  [1m[35m (107.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/destroy.js.erb
+  Rendered events/destroy.js.erb (0.6ms)
+Completed 200 OK in 125ms (Views: 7.2ms | ActiveRecord: 107.7ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2017-04-28 01:38:31 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (4.5ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 1213ms (Views: 1168.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493357913362" for 127.0.0.1 at 2017-04-28 01:38:33 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493357913362"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (66.1ms)
+Completed 200 OK in 113ms (Views: 71.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/events/new?_=1493357913363" for 127.0.0.1 at 2017-04-28 01:38:37 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493357913363"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (660.3ms)
+  Rendered events/_new.html.erb (665.4ms)
+  Rendered events/new.js.erb (671.0ms)
+Completed 200 OK in 685ms (Views: 676.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493357913364" for 127.0.0.1 at 2017-04-28 01:39:37 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493357913364"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.0ms)
+  Rendered events/_new.html.erb (15.1ms)
+  Rendered events/new.js.erb (20.4ms)
+Completed 200 OK in 36ms (Views: 30.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 01:39:56 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 91ms (Views: 88.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493357996986" for 127.0.0.1 at 2017-04-28 01:39:57 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493357996986"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.5ms)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events/new?_=1493357996987" for 127.0.0.1 at 2017-04-28 01:39:58 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493357996987"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.8ms)
+  Rendered events/_new.html.erb (17.5ms)
+  Rendered events/new.js.erb (24.1ms)
+Completed 200 OK in 38ms (Views: 32.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 01:42:52 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 123ms (Views: 120.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493358172613" for 127.0.0.1 at 2017-04-28 01:42:52 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493358172613"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.4ms)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/new?_=1493358172614" for 127.0.0.1 at 2017-04-28 01:42:53 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358172614"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.2ms)
+  Rendered events/_new.html.erb (14.8ms)
+  Rendered events/new.js.erb (19.7ms)
+Completed 200 OK in 34ms (Views: 26.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493358172615" for 127.0.0.1 at 2017-04-28 01:43:18 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358172615"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (14.4ms)
+  Rendered events/_new.html.erb (24.1ms)
+  Rendered events/new.js.erb (31.9ms)
+Completed 200 OK in 48ms (Views: 40.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 01:43:21 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 75ms (Views: 73.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493358202448" for 127.0.0.1 at 2017-04-28 01:43:22 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493358202448"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.5ms)
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493358202449" for 127.0.0.1 at 2017-04-28 01:43:23 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358202449"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.1ms)
+  Rendered events/_new.html.erb (14.6ms)
+  Rendered events/new.js.erb (20.0ms)
+Completed 200 OK in 35ms (Views: 26.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 01:43:36 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 92ms (Views: 90.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493358216967" for 127.0.0.1 at 2017-04-28 01:43:37 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493358216967"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.4ms)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493358216968" for 127.0.0.1 at 2017-04-28 01:43:38 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358216968"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (12.1ms)
+  Rendered events/_new.html.erb (21.5ms)
+  Rendered events/new.js.erb (29.7ms)
+Completed 200 OK in 49ms (Views: 40.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-28 01:43:42 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"", "date_range"=>"03/29/2017 - 03/30/2017", "start"=>"2017-03-29 00:00", "end"=>"2017-03-30 00:00", "color"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (23.6ms)
+  Rendered events/create.js.erb (29.5ms)
+Completed 500 Internal Server Error in 67ms (ActiveRecord: 0.2ms)
+
+
+DEPRECATION WARNING: #original_exception is deprecated. Use #cause instead. (called from initialize at /var/lib/gems/2.3.0/gems/better_errors-2.1.1/lib/better_errors/raised_exception.rb:7)
+DEPRECATION WARNING: #original_exception is deprecated. Use #cause instead. (called from initialize at /var/lib/gems/2.3.0/gems/better_errors-2.1.1/lib/better_errors/raised_exception.rb:8)
+
+ActionController::UrlGenerationError - No route matches {:action=>"show", :controller=>"events", :id=>#<Event id: nil, title: "", start: "2017-03-29 00:00:00", end: "2017-03-30 00:00:00", color: "", created_at: nil, updated_at: nil>, :method=>:patch} missing required keys: [:id]:
+  actionpack (5.0.0.1) lib/action_dispatch/journey/formatter.rb:50:in `generate'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:629:in `generate'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:660:in `generate'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:707:in `url_for'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:236:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:177:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:295:in `block (2 levels) in define_url_helper'
+  app/views/events/_event.json.jbuilder:11:in `_app_views_events__event_json_jbuilder___750757900__636742788'
+  actionview (5.0.0.1) lib/action_view/template.rb:158:in `block in render'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (5.0.0.1) lib/action_view/template.rb:348:in `instrument'
+  actionview (5.0.0.1) lib/action_view/template.rb:156:in `render'
+  actionview (5.0.0.1) lib/action_view/renderer/partial_renderer.rb:343:in `render_partial'
+  actionview (5.0.0.1) lib/action_view/renderer/partial_renderer.rb:311:in `block in render'
+  actionview (5.0.0.1) lib/action_view/renderer/abstract_renderer.rb:42:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (5.0.0.1) lib/action_view/renderer/abstract_renderer.rb:41:in `instrument'
+  actionview (5.0.0.1) lib/action_view/renderer/partial_renderer.rb:310:in `render'
+  actionview (5.0.0.1) lib/action_view/renderer/renderer.rb:47:in `render_partial'
+  actionview (5.0.0.1) lib/action_view/helpers/rendering_helper.rb:35:in `render'
+  app/views/events/create.js.erb:3:in `_app_views_events_create_js_erb__496243880__636673288'
+  actionview (5.0.0.1) lib/action_view/template.rb:158:in `block in render'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (5.0.0.1) lib/action_view/template.rb:348:in `instrument'
+  actionview (5.0.0.1) lib/action_view/template.rb:156:in `render'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (5.0.0.1) lib/action_view/renderer/abstract_renderer.rb:42:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (5.0.0.1) lib/action_view/renderer/abstract_renderer.rb:41:in `instrument'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (5.0.0.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (5.0.0.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:103:in `_render_template'
+  actionpack (5.0.0.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+  actionpack (5.0.0.1) lib/action_controller/metal/renderers.rb:144:in `render_to_body'
+  actionpack (5.0.0.1) lib/abstract_controller/rendering.rb:26:in `render'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:36:in `render'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (5.0.0.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (5.0.0.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:36:in `default_render'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+  puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+  puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+  puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+  puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+
+Started POST "/events" for 127.0.0.1 at 2017-04-28 01:43:48 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"ds", "date_range"=>"03/29/2017 - 03/30/2017", "start"=>"2017-03-29 00:00", "end"=>"2017-03-30 00:00", "color"=>"black"}, "commit"=>"Create Event"}
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "ds"], ["start", 2017-03-29 00:00:00 UTC], ["end", 2017-03-30 00:00:00 UTC], ["color", "black"], ["created_at", 2017-04-28 05:43:48 UTC], ["updated_at", 2017-04-28 05:43:48 UTC]]
+  [1m[35m (184.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.6ms)
+  Rendered events/create.js.erb (8.2ms)
+Completed 200 OK in 215ms (Views: 15.7ms | ActiveRecord: 185.1ms)
+
+
+Started GET "/events/7/edit?_=1493358216969" for 127.0.0.1 at 2017-04-28 01:43:53 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216969", "id"=>"7"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (12.2ms)
+  Rendered events/_edit.html.erb (17.0ms)
+  Rendered events/edit.js.erb (22.7ms)
+Completed 200 OK in 69ms (Views: 28.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/7/edit?_=1493358216970" for 127.0.0.1 at 2017-04-28 01:43:54 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216970", "id"=>"7"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.5ms)
+  Rendered events/_edit.html.erb (15.8ms)
+  Rendered events/edit.js.erb (21.1ms)
+Completed 200 OK in 37ms (Views: 28.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/7/edit?_=1493358216971" for 127.0.0.1 at 2017-04-28 01:43:55 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216971", "id"=>"7"}
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (14.4ms)
+  Rendered events/_edit.html.erb (19.5ms)
+  Rendered events/edit.js.erb (24.8ms)
+Completed 200 OK in 39ms (Views: 31.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/events/7/edit?_=1493358216972" for 127.0.0.1 at 2017-04-28 01:43:55 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216972", "id"=>"7"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.3ms)
+  Rendered events/_edit.html.erb (15.4ms)
+  Rendered events/edit.js.erb (21.9ms)
+Completed 200 OK in 40ms (Views: 31.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/7/edit?_=1493358216973" for 127.0.0.1 at 2017-04-28 01:43:55 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216973", "id"=>"7"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.6ms)
+  Rendered events/_edit.html.erb (16.3ms)
+  Rendered events/edit.js.erb (21.5ms)
+Completed 200 OK in 35ms (Views: 28.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/7/edit?_=1493358216974" for 127.0.0.1 at 2017-04-28 01:43:55 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216974", "id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.5ms)
+  Rendered events/_edit.html.erb (15.3ms)
+  Rendered events/edit.js.erb (20.5ms)
+Completed 200 OK in 37ms (Views: 29.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/7/edit?_=1493358216975" for 127.0.0.1 at 2017-04-28 01:43:55 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216975", "id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (12.3ms)
+  Rendered events/_edit.html.erb (18.3ms)
+  Rendered events/edit.js.erb (23.3ms)
+Completed 200 OK in 39ms (Views: 30.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/7/edit?_=1493358216976" for 127.0.0.1 at 2017-04-28 01:43:55 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216976", "id"=>"7"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.9ms)
+  Rendered events/_edit.html.erb (14.7ms)
+  Rendered events/edit.js.erb (20.1ms)
+Completed 200 OK in 32ms (Views: 26.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/7/edit?_=1493358216977" for 127.0.0.1 at 2017-04-28 01:43:56 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216977", "id"=>"7"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (12.1ms)
+  Rendered events/_edit.html.erb (16.8ms)
+  Rendered events/edit.js.erb (22.4ms)
+Completed 200 OK in 33ms (Views: 28.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/7/edit?_=1493358216978" for 127.0.0.1 at 2017-04-28 01:43:56 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216978", "id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.3ms)
+  Rendered events/_edit.html.erb (15.1ms)
+  Rendered events/edit.js.erb (20.2ms)
+Completed 200 OK in 33ms (Views: 25.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/7/edit?_=1493358216979" for 127.0.0.1 at 2017-04-28 01:43:56 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216979", "id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.6ms)
+  Rendered events/_edit.html.erb (14.4ms)
+  Rendered events/edit.js.erb (19.6ms)
+Completed 200 OK in 31ms (Views: 25.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/7/edit?_=1493358216980" for 127.0.0.1 at 2017-04-28 01:43:56 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216980", "id"=>"7"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.0ms)
+  Rendered events/_edit.html.erb (14.6ms)
+  Rendered events/edit.js.erb (20.4ms)
+Completed 200 OK in 34ms (Views: 27.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/7/edit?_=1493358216981" for 127.0.0.1 at 2017-04-28 01:43:56 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216981", "id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.3ms)
+  Rendered events/_edit.html.erb (14.4ms)
+  Rendered events/edit.js.erb (19.8ms)
+Completed 200 OK in 32ms (Views: 26.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/7/edit?_=1493358216982" for 127.0.0.1 at 2017-04-28 01:43:57 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216982", "id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.9ms)
+  Rendered events/_edit.html.erb (14.7ms)
+  Rendered events/edit.js.erb (20.1ms)
+Completed 200 OK in 32ms (Views: 25.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/7/edit?_=1493358216983" for 127.0.0.1 at 2017-04-28 01:43:57 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216983", "id"=>"7"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.5ms)
+  Rendered events/_edit.html.erb (15.3ms)
+  Rendered events/edit.js.erb (20.5ms)
+Completed 200 OK in 32ms (Views: 26.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/7/edit?_=1493358216984" for 127.0.0.1 at 2017-04-28 01:43:57 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358216984", "id"=>"7"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.4ms)
+  Rendered events/_edit.html.erb (14.4ms)
+  Rendered events/edit.js.erb (20.1ms)
+Completed 200 OK in 32ms (Views: 26.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 01:44:04 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 81ms (Views: 80.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493358245166" for 127.0.0.1 at 2017-04-28 01:44:05 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493358245166"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (5.8ms)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/7/edit?_=1493358245167" for 127.0.0.1 at 2017-04-28 01:44:06 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245167", "id"=>"7"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.9ms)
+  Rendered events/_edit.html.erb (19.4ms)
+  Rendered events/edit.js.erb (27.4ms)
+Completed 200 OK in 42ms (Views: 35.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/7/edit?_=1493358245168" for 127.0.0.1 at 2017-04-28 05:51:41 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245168", "id"=>"7"}
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (12.0ms)
+  Rendered events/_edit.html.erb (17.5ms)
+  Rendered events/edit.js.erb (22.9ms)
+Completed 200 OK in 39ms (Views: 30.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events/7/edit?_=1493358245169" for 127.0.0.1 at 2017-04-28 05:51:58 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245169", "id"=>"7"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.5ms)
+  Rendered events/_edit.html.erb (16.6ms)
+  Rendered events/edit.js.erb (21.8ms)
+Completed 200 OK in 37ms (Views: 30.9ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/events/7" for 127.0.0.1 at 2017-04-28 05:52:03 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"7"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 7]]
+  [1m[35m (62.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/destroy.js.erb
+  Rendered events/destroy.js.erb (0.6ms)
+Completed 200 OK in 87ms (Views: 8.8ms | ActiveRecord: 64.3ms)
+
+
+Started GET "/events/new?_=1493358245170" for 127.0.0.1 at 2017-04-28 05:55:46 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245170"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.6ms)
+  Rendered events/_new.html.erb (15.4ms)
+  Rendered events/new.js.erb (20.6ms)
+Completed 200 OK in 37ms (Views: 29.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493358245171" for 127.0.0.1 at 2017-04-28 05:55:52 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245171"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.2ms)
+  Rendered events/_new.html.erb (13.7ms)
+  Rendered events/new.js.erb (18.8ms)
+Completed 200 OK in 32ms (Views: 26.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-28 05:57:18 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"random event", "date_range"=>"03/29/2017 - 03/29/2017", "start"=>"2017-03-29 12:00", "end"=>"2017-03-29 14:00", "color"=>"green"}, "commit"=>"Create Event"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "random event"], ["start", 2017-03-29 12:00:00 UTC], ["end", 2017-03-29 14:00:00 UTC], ["color", "green"], ["created_at", 2017-04-28 09:57:18 UTC], ["updated_at", 2017-04-28 09:57:18 UTC]]
+  [1m[35m (100.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.2ms)
+  Rendered events/create.js.erb (6.4ms)
+Completed 200 OK in 135ms (Views: 13.7ms | ActiveRecord: 100.8ms)
+
+
+Started GET "/events/8/edit?_=1493358245172" for 127.0.0.1 at 2017-04-28 05:57:21 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245172", "id"=>"8"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.4ms)
+  Rendered events/_edit.html.erb (14.4ms)
+  Rendered events/edit.js.erb (20.2ms)
+Completed 200 OK in 38ms (Views: 30.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/8/edit?_=1493358245173" for 127.0.0.1 at 2017-04-28 05:57:29 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245173", "id"=>"8"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.8ms)
+  Rendered events/_edit.html.erb (15.0ms)
+  Rendered events/edit.js.erb (20.0ms)
+Completed 200 OK in 38ms (Views: 26.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/8/edit?_=1493358245174" for 127.0.0.1 at 2017-04-28 05:58:05 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245174", "id"=>"8"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (9.6ms)
+  Rendered events/_edit.html.erb (14.2ms)
+  Rendered events/edit.js.erb (19.4ms)
+Completed 200 OK in 36ms (Views: 25.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/new?_=1493358245175" for 127.0.0.1 at 2017-04-28 06:13:38 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245175"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.6ms)
+  Rendered events/_new.html.erb (16.1ms)
+  Rendered events/new.js.erb (22.4ms)
+Completed 200 OK in 38ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-02-26&end=2017-04-09&_=1493358245176" for 127.0.0.1 at 2017-04-28 06:13:43 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-02-26", "end"=>"2017-04-09", "_"=>"1493358245176"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.7ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493358245177" for 127.0.0.1 at 2017-04-28 06:13:51 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493358245177"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.7ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/8/edit?_=1493358245178" for 127.0.0.1 at 2017-04-28 06:13:57 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245178", "id"=>"8"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.2ms)
+  Rendered events/_edit.html.erb (15.7ms)
+  Rendered events/edit.js.erb (23.4ms)
+Completed 200 OK in 38ms (Views: 30.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/events/new?_=1493358245179" for 127.0.0.1 at 2017-04-28 06:14:19 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245179"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.5ms)
+  Rendered events/_new.html.erb (14.7ms)
+  Rendered events/new.js.erb (22.1ms)
+Completed 200 OK in 37ms (Views: 28.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-02-26&end=2017-04-09&_=1493358245180" for 127.0.0.1 at 2017-04-28 06:14:32 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-02-26", "end"=>"2017-04-09", "_"=>"1493358245180"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.4ms)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493358245181" for 127.0.0.1 at 2017-04-28 06:14:39 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493358245181"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.3ms)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/8/edit?_=1493358245182" for 127.0.0.1 at 2017-04-28 06:14:42 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245182", "id"=>"8"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.9ms)
+  Rendered events/_edit.html.erb (15.7ms)
+  Rendered events/edit.js.erb (21.5ms)
+Completed 200 OK in 33ms (Views: 27.7ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/events/8" for 127.0.0.1 at 2017-04-28 06:14:46 -0400
+Processing by EventsController#destroy as JS
+  Parameters: {"id"=>"8"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 8]]
+  [1m[35m (60.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/destroy.js.erb
+  Rendered events/destroy.js.erb (0.6ms)
+Completed 200 OK in 89ms (Views: 12.1ms | ActiveRecord: 61.0ms)
+
+
+Started GET "/events/new?_=1493358245183" for 127.0.0.1 at 2017-04-28 06:14:49 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245183"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.8ms)
+  Rendered events/_new.html.erb (15.7ms)
+  Rendered events/new.js.erb (23.0ms)
+Completed 200 OK in 35ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-28 06:15:13 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"random event", "date_range"=>"03/29/2017 - 03/30/2017", "start"=>"2017-03-29 12:30", "end"=>"2017-03-30 15:00", "color"=>"black"}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "random event"], ["start", 2017-03-29 12:30:00 UTC], ["end", 2017-03-30 15:00:00 UTC], ["color", "black"], ["created_at", 2017-04-28 10:15:13 UTC], ["updated_at", 2017-04-28 10:15:13 UTC]]
+  [1m[35m (145.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.4ms)
+  Rendered events/create.js.erb (7.8ms)
+Completed 200 OK in 167ms (Views: 13.4ms | ActiveRecord: 146.2ms)
+
+
+Started GET "/events/9/edit?_=1493358245184" for 127.0.0.1 at 2017-04-28 06:15:21 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493358245184", "id"=>"9"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (10.0ms)
+  Rendered events/_edit.html.erb (15.2ms)
+  Rendered events/edit.js.erb (22.2ms)
+Completed 200 OK in 41ms (Views: 32.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493358245185" for 127.0.0.1 at 2017-04-28 06:18:50 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245185"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.1ms)
+  Rendered events/_new.html.erb (15.3ms)
+  Rendered events/new.js.erb (21.0ms)
+Completed 200 OK in 32ms (Views: 27.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493358245186" for 127.0.0.1 at 2017-04-28 06:18:55 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245186"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (9.8ms)
+  Rendered events/_new.html.erb (14.7ms)
+  Rendered events/new.js.erb (19.8ms)
+Completed 200 OK in 34ms (Views: 27.0ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/events/9?method=patch" for 127.0.0.1 at 2017-04-28 06:21:36 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"9", "start"=>"2017-04-05T12:30:00", "end"=>"2017-04-06T15:00:00"}, "method"=>"patch", "id"=>"9"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-05 12:30:00 UTC], ["end", 2017-04-06 15:00:00 UTC], ["updated_at", 2017-04-28 10:21:36 UTC], ["id", 9]]
+  [1m[35m (83.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (2.0ms)
+  Rendered events/update.js.erb (7.0ms)
+Completed 200 OK in 121ms (Views: 12.7ms | ActiveRecord: 84.3ms)
+
+
+Started PATCH "/events/9?method=patch" for 127.0.0.1 at 2017-04-28 06:21:40 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"9", "start"=>"2017-04-03T12:30:00", "end"=>"2017-04-04T15:00:00"}, "method"=>"patch", "id"=>"9"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-03 12:30:00 UTC], ["end", 2017-04-04 15:00:00 UTC], ["updated_at", 2017-04-28 10:21:40 UTC], ["id", 9]]
+  [1m[35m (73.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (1.8ms)
+  Rendered events/update.js.erb (9.8ms)
+Completed 200 OK in 106ms (Views: 19.7ms | ActiveRecord: 74.3ms)
+
+
+Started PATCH "/events/9?method=patch" for 127.0.0.1 at 2017-04-28 06:21:44 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"9", "start"=>"2017-04-04T12:30:00", "end"=>"2017-04-05T15:00:00"}, "method"=>"patch", "id"=>"9"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-04 12:30:00 UTC], ["end", 2017-04-05 15:00:00 UTC], ["updated_at", 2017-04-28 10:21:44 UTC], ["id", 9]]
+  [1m[35m (66.4ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (1.4ms)
+  Rendered events/update.js.erb (7.3ms)
+Completed 200 OK in 91ms (Views: 13.1ms | ActiveRecord: 67.7ms)
+
+
+Started PATCH "/events/9?method=patch" for 127.0.0.1 at 2017-04-28 06:21:50 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"9", "start"=>"2017-04-03T12:30:00", "end"=>"2017-04-04T15:00:00"}, "method"=>"patch", "id"=>"9"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-03 12:30:00 UTC], ["end", 2017-04-04 15:00:00 UTC], ["updated_at", 2017-04-28 10:21:50 UTC], ["id", 9]]
+  [1m[35m (71.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (2.1ms)
+  Rendered events/update.js.erb (9.7ms)
+Completed 200 OK in 105ms (Views: 18.3ms | ActiveRecord: 72.7ms)
+
+
+Started PATCH "/events/2?method=patch" for 127.0.0.1 at 2017-04-28 06:21:56 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"2", "start"=>"2017-04-28T07:00:00", "end"=>"2017-04-29T00:00:00"}, "method"=>"patch", "id"=>"2"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-28 07:00:00 UTC], ["end", 2017-04-29 00:00:00 UTC], ["updated_at", 2017-04-28 10:21:56 UTC], ["id", 2]]
+  [1m[35m (62.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (1.3ms)
+  Rendered events/update.js.erb (6.4ms)
+Completed 200 OK in 91ms (Views: 17.2ms | ActiveRecord: 63.8ms)
+
+
+Started GET "/events/new?_=1493358245187" for 127.0.0.1 at 2017-04-28 06:21:57 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245187"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.6ms)
+  Rendered events/_new.html.erb (15.6ms)
+  Rendered events/new.js.erb (21.0ms)
+Completed 200 OK in 37ms (Views: 30.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493358245188" for 127.0.0.1 at 2017-04-28 06:22:03 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493358245188"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (11.4ms)
+  Rendered events/_new.html.erb (16.8ms)
+  Rendered events/new.js.erb (24.3ms)
+Completed 200 OK in 37ms (Views: 30.5ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/events/9?method=patch" for 127.0.0.1 at 2017-04-28 06:22:48 -0400
+Processing by EventsController#update as */*
+  Parameters: {"event"=>{"id"=>"9", "start"=>"2017-04-02T12:30:00", "end"=>"2017-04-03T15:00:00"}, "method"=>"patch", "id"=>"9"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "events" SET "start" = ?, "end" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["start", 2017-04-02 12:30:00 UTC], ["end", 2017-04-03 15:00:00 UTC], ["updated_at", 2017-04-28 10:22:48 UTC], ["id", 9]]
+  [1m[35m (55.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/update.js.erb
+  Rendered events/_event.json.jbuilder (1.4ms)
+  Rendered events/update.js.erb (7.1ms)
+Completed 200 OK in 84ms (Views: 12.9ms | ActiveRecord: 57.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:30:02 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.3ms)
+  Rendered layouts/_messages.html.erb (1.8ms)
+Completed 200 OK in 484ms (Views: 471.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493375403589" for 127.0.0.1 at 2017-04-28 06:30:03 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493375403589"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (36.8ms)
+Completed 200 OK in 48ms (Views: 39.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:30:48 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 295ms (Views: 293.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:30:52 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 84ms (Views: 82.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:31:05 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 259ms (Views: 256.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493375466368" for 127.0.0.1 at 2017-04-28 06:31:06 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493375466368"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (5.8ms)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:31:41 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 120ms (Views: 118.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493375502302" for 127.0.0.1 at 2017-04-28 06:31:42 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493375502302"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.5ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events.json?start=2017-02-26&end=2017-04-09&_=1493375502303" for 127.0.0.1 at 2017-04-28 06:31:46 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-02-26", "end"=>"2017-04-09", "_"=>"1493375502303"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.8ms)
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events.json?start=2017-01-29&end=2017-03-12&_=1493375502304" for 127.0.0.1 at 2017-04-28 06:31:47 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-01-29", "end"=>"2017-03-12", "_"=>"1493375502304"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.9ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events.json?start=2017-01-01&end=2017-02-12&_=1493375502305" for 127.0.0.1 at 2017-04-28 06:31:48 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-01-01", "end"=>"2017-02-12", "_"=>"1493375502305"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.8ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:33:06 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 109ms (Views: 107.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493375587006" for 127.0.0.1 at 2017-04-28 06:33:07 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493375587006"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (5.0ms)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/9/edit?_=1493375587007" for 127.0.0.1 at 2017-04-28 06:33:10 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493375587007", "id"=>"9"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (619.2ms)
+  Rendered events/_edit.html.erb (625.4ms)
+  Rendered events/edit.js.erb (630.7ms)
+Completed 200 OK in 650ms (Views: 637.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/9/edit?_=1493375587008" for 127.0.0.1 at 2017-04-28 06:33:19 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493375587008", "id"=>"9"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.7ms)
+  Rendered events/_edit.html.erb (17.5ms)
+  Rendered events/edit.js.erb (23.1ms)
+Completed 200 OK in 38ms (Views: 29.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/9/edit?_=1493375587009" for 127.0.0.1 at 2017-04-28 06:33:25 -0400
+Processing by EventsController#edit as JS
+  Parameters: {"_"=>"1493375587009", "id"=>"9"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/edit.js.erb
+  Rendered events/_form.html.erb (11.1ms)
+  Rendered events/_edit.html.erb (16.3ms)
+  Rendered events/edit.js.erb (23.3ms)
+Completed 200 OK in 42ms (Views: 33.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:34:00 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.5ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 97ms (Views: 94.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493375641212" for 127.0.0.1 at 2017-04-28 06:34:01 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493375641212"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.8ms)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/new?_=1493375641213" for 127.0.0.1 at 2017-04-28 06:34:03 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493375641213"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (12.6ms)
+  Rendered events/_new.html.erb (20.4ms)
+  Rendered events/new.js.erb (27.8ms)
+Completed 200 OK in 44ms (Views: 37.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:44:34 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 244ms (Views: 242.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493376275540" for 127.0.0.1 at 2017-04-28 06:44:37 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493376275540"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (10.3ms)
+  Rendered events/_new.html.erb (15.1ms)
+  Rendered events/new.js.erb (20.4ms)
+Completed 200 OK in 34ms (Views: 29.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-04-28 06:44:49 -0400
+Processing by EventsController#create as JS
+  Parameters: {"utf8"=>"✓", "event"=>{"title"=>"dd", "date_range"=>"03/29/2017 - 03/30/2017", "start"=>"2017-03-29 00:00", "end"=>"2017-03-30 00:00", "color"=>"red"}, "commit"=>"Create Event"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "start", "end", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "dd"], ["start", 2017-03-29 00:00:00 UTC], ["end", 2017-03-30 00:00:00 UTC], ["color", "red"], ["created_at", 2017-04-28 10:44:49 UTC], ["updated_at", 2017-04-28 10:44:49 UTC]]
+  [1m[35m (146.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering events/create.js.erb
+  Rendered events/_event.json.jbuilder (1.6ms)
+  Rendered events/create.js.erb (8.3ms)
+Completed 200 OK in 174ms (Views: 14.7ms | ActiveRecord: 147.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:44:55 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 84ms (Views: 82.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:49:27 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.4ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 818ms (Views: 805.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493376568618" for 127.0.0.1 at 2017-04-28 06:49:28 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493376568618"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (27.8ms)
+Completed 200 OK in 36ms (Views: 29.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:53:18 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 237ms (Views: 235.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:53:33 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 88ms (Views: 86.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493376813730" for 127.0.0.1 at 2017-04-28 06:53:34 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493376813730"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (5.6ms)
+Completed 200 OK in 10ms (Views: 8.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:57:27 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 241ms (Views: 239.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493377048151" for 127.0.0.1 at 2017-04-28 06:57:28 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493377048151"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.6ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events/new?_=1493377048152" for 127.0.0.1 at 2017-04-28 06:57:29 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493377048152"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (514.1ms)
+  Rendered events/_new.html.erb (521.4ms)
+  Rendered events/new.js.erb (529.0ms)
+Completed 200 OK in 545ms (Views: 537.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:58:25 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 226ms (Views: 224.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493377106409" for 127.0.0.1 at 2017-04-28 06:58:26 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493377106409"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (5.0ms)
+Completed 200 OK in 10ms (Views: 7.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493377106410" for 127.0.0.1 at 2017-04-28 06:58:27 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493377106410"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (17.1ms)
+  Rendered events/_new.html.erb (26.2ms)
+  Rendered events/new.js.erb (34.0ms)
+Completed 200 OK in 53ms (Views: 44.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:58:55 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.9ms)
+Completed 200 OK in 240ms (Views: 238.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493377135885" for 127.0.0.1 at 2017-04-28 06:58:56 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493377135885"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.8ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new?_=1493377135886" for 127.0.0.1 at 2017-04-28 06:58:57 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493377135886"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (15.9ms)
+  Rendered events/_new.html.erb (20.7ms)
+  Rendered events/new.js.erb (26.4ms)
+Completed 200 OK in 40ms (Views: 34.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new?_=1493377135887" for 127.0.0.1 at 2017-04-28 06:59:17 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493377135887"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (14.3ms)
+  Rendered events/_new.html.erb (19.7ms)
+  Rendered events/new.js.erb (25.1ms)
+Completed 200 OK in 40ms (Views: 32.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 06:59:24 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation_links.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (3.2ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 102ms (Views: 100.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493377165440" for 127.0.0.1 at 2017-04-28 06:59:25 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493377165440"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (5.4ms)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events/new?_=1493377165441" for 127.0.0.1 at 2017-04-28 06:59:26 -0400
+Processing by EventsController#new as JS
+  Parameters: {"_"=>"1493377165441"}
+  Rendering events/new.js.erb
+  Rendered events/_form.html.erb (13.1ms)
+  Rendered events/_new.html.erb (17.8ms)
+  Rendered events/new.js.erb (23.7ms)
+Completed 200 OK in 36ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 07:57:27 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (3.3ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 524ms (Views: 507.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493380649326" for 127.0.0.1 at 2017-04-28 07:57:29 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493380649326"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (19.4ms)
+Completed 200 OK in 28ms (Views: 21.9ms | ActiveRecord: 1.5ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateClients (20170428120545)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "clients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_clients_on_email" ON "clients" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_clients_on_reset_password_token" ON "clients" ("reset_password_token")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170428120545"]]
+  [1m[35m (103.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DeviseCreateTeachers (20170428120619)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_teachers_on_email" ON "teachers" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_teachers_on_reset_password_token" ON "teachers" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170428120619"]]
+  [1m[35m (112.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_email' AND type='index'
+[0m
+Started GET "/clients/sign_up" for 127.0.0.1 at 2017-04-28 08:06:50 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (706.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.5ms)
+  Rendered layouts/_messages.html.erb (2.2ms)
+Completed 200 OK in 1211ms (Views: 1176.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-04-28 08:07:07 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uQJM9kVjpnUfarlzSj69ZKHz9domMS+mPqErRSscbCREMlecdoWKn1vL0U4V4kQWBc4kZ7IipJXiif9BCtX8bw==", "client"=>{"email"=>"msinghal89@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mClient Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "clients" WHERE "clients"."email" = ? LIMIT ?[0m  [["email", "msinghal89@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "msinghal89@gmail.com"], ["encrypted_password", "$2a$11$8W9xLdBcE5GVI9h0nVpmwObenFcJFwSRuqWAaqLfdRZRZ4WtLEA36"], ["created_at", 2017-04-28 12:07:07 UTC], ["updated_at", 2017-04-28 12:07:07 UTC]]
+  [1m[35m (87.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "clients" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "clients"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", 2017-04-28 12:07:08 UTC], ["last_sign_in_at", 2017-04-28 12:07:08 UTC], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", 2017-04-28 12:07:08 UTC], ["id", 1]]
+  [1m[35m (115.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 666ms (ActiveRecord: 205.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-28 08:07:08 -0400
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 101ms (Views: 99.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493381228513" for 127.0.0.1 at 2017-04-28 08:07:08 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493381228513"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (20.0ms)
+Completed 200 OK in 28ms (Views: 23.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/teachers/sign_up" for 127.0.0.1 at 2017-04-28 08:07:37 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (12.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 124ms (Views: 102.5ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_email' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2017-04-28 08:10:54 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 531ms (Views: 519.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493381455001" for 127.0.0.1 at 2017-04-28 08:10:55 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493381455001"}
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (40.2ms)
+Completed 200 OK in 52ms (Views: 45.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-04-28 08:11:01 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/users/sign_in"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered collection of /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [39 times] (33.7ms)
+  Rendered /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (25.7ms)
+  Rendering /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /var/lib/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (105.3ms)
+Started GET "/clients/sign_in" for 127.0.0.1 at 2017-04-28 08:11:09 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (45.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 144ms (Views: 119.3ms | ActiveRecord: 1.0ms)
+
+
