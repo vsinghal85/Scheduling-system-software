@@ -1,22 +1,24 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+ before_action :authenticate_client!, except: [:show]
 
   def index
-    @events = Event.all
+    @events = current_client.events.all
   end
 
   def show
   end
 
   def new
-    @event = Event.new
+   # @event = Event.new
+    @event = current_client.events.build
   end
 
   def edit
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = current_client.events.build(event_params)
     @event.save
   end
 
