@@ -8392,3 +8392,228 @@ Processing by Devise::SessionsController#new as HTML
 Completed 200 OK in 96ms (Views: 94.6ms | ActiveRecord: 0.0ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTeacherClientMappings (20170429060949)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "teacher_client_mappings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170429060949"]]
+  [1m[35m (65.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to Mappingmigration (20170429061429)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "teacher_client_mappings" ADD "teacher_id" integer[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "teacher_client_mappings" ADD "client_id" integer[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170429061429"]]
+  [1m[35m (74.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_clients_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_clients_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_on_client_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_on_client_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teachers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teachers_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "teacher_client_mappings" ("created_at", "updated_at", "teacher_id", "client_id") VALUES (?, ?, ?, ?)[0m  [["created_at", 2017-04-29 06:33:11 UTC], ["updated_at", 2017-04-29 06:33:11 UTC], ["teacher_id", 1], ["client_id", 1]]
+  [1m[35m (102.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients" INNER JOIN "teacher_client_mappings" ON "clients"."id" = "teacher_client_mappings"."client_id" WHERE "teacher_client_mappings"."teacher_id" = ?[0m  [["teacher_id", 1]]
+Started GET "/clients/sign_up" for 127.0.0.1 at 2017-04-29 02:34:18 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (590.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+  Rendered layouts/_messages.html.erb (1.7ms)
+Completed 200 OK in 1106ms (Views: 1072.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-04-29 02:34:43 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rXnEBESisPBQ/1bq8F/gBT7j9Wrf0a7U5x5d69U7KxA+MwMrKNkgq8ZYa9LxSlxlomBU0uKnMENu/6XHakRjRw==", "client"=>{"email"=>"c@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mClient Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "clients" WHERE "clients"."email" = ? LIMIT ?[0m  [["email", "c@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "c@gmail.com"], ["encrypted_password", "$2a$11$ut0GhJmXN4JHuUXtbI3QXed9YuuYCybS8MkVpUuqBGFaXQJ0FnDV6"], ["created_at", 2017-04-29 06:34:44 UTC], ["updated_at", 2017-04-29 06:34:44 UTC]]
+  [1m[35m (74.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "clients" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "clients"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", 2017-04-29 06:34:44 UTC], ["last_sign_in_at", 2017-04-29 06:34:44 UTC], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", 2017-04-29 06:34:44 UTC], ["id", 8]]
+  [1m[35m (79.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 398ms (ActiveRecord: 156.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-29 02:34:44 -0400
+Processing by VisitorsController#index as HTML
+  [1m[36mClient Load (0.6ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? ORDER BY "clients"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 94ms (Views: 89.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493447684688" for 127.0.0.1 at 2017-04-29 02:34:45 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493447684688"}
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? ORDER BY "clients"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."client_id" = ?[0m  [["client_id", 8]]
+  Rendered events/index.json.jbuilder (5.4ms)
+Completed 200 OK in 56ms (Views: 11.5ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/clients/sign_out" for 127.0.0.1 at 2017-04-29 02:34:59 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"XX7PAxUVQcOp9D9duhj6JYE3Q4NjULkCcqgn6OMKPkjONAgseW7RmD9TAmW7DUZFHbTiO14mJ5X7Sd/EXHV2Hw=="}
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? ORDER BY "clients"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 11ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-29 02:34:59 -0400
+Processing by VisitorsController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/clients/sign_in" for 127.0.0.1 at 2017-04-29 02:34:59 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (15.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 94ms (Views: 92.6ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mClient Load (0.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients" INNER JOIN "teacher_client_mappings" ON "clients"."id" = "teacher_client_mappings"."client_id" WHERE "teacher_client_mappings"."teacher_id" = ?[0m  [["teacher_id", 1]]
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" INNER JOIN "teacher_client_mappings" ON "teachers"."id" = "teacher_client_mappings"."teacher_id" WHERE "teacher_client_mappings"."client_id" = ? LIMIT ?[0m  [["client_id", 1], ["LIMIT", 1]]
+Started GET "/clients/sign_up" for 127.0.0.1 at 2017-04-29 03:02:40 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (599.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 1113ms (Views: 1078.3ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-04-29 03:03:37 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5PIYbiHAJPF6GhpThBhvmVnVBIVOPOEA9VdXBJJTNY6U8ezdkNz1pm+1UurpkqKL/tq4toVrtrgAtbNLdTWGPQ==", "client"=>{"email"=>"l@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mClient Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "clients" WHERE "clients"."email" = ? LIMIT ?[0m  [["email", "l@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "l@gmail.com"], ["encrypted_password", "$2a$11$bPGxJQwPnko8aELT.FEI1udE6zbeFvR05oK8aAmeX/vWR59qvW5OK"], ["created_at", 2017-04-29 07:03:37 UTC], ["updated_at", 2017-04-29 07:03:37 UTC]]
+  [1m[35m (67.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "clients" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "clients"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", 2017-04-29 07:03:37 UTC], ["last_sign_in_at", 2017-04-29 07:03:37 UTC], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", 2017-04-29 07:03:37 UTC], ["id", 9]]
+  [1m[35m (113.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 418ms (ActiveRecord: 183.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-29 03:03:37 -0400
+Processing by VisitorsController#index as HTML
+  [1m[36mClient Load (0.7ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? ORDER BY "clients"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering visitors/index.html.erb within layouts/application
+  Rendered visitors/index.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 100ms (Views: 96.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/events.json?start=2017-03-26&end=2017-05-07&_=1493449417852" for 127.0.0.1 at 2017-04-29 03:03:38 -0400
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2017-03-26", "end"=>"2017-05-07", "_"=>"1493449417852"}
+  [1m[36mClient Load (0.6ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? ORDER BY "clients"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."client_id" = ?[0m  [["client_id", 9]]
+  Rendered events/index.json.jbuilder (4.8ms)
+Completed 200 OK in 31ms (Views: 8.7ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/clients/sign_out" for 127.0.0.1 at 2017-04-29 03:04:00 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ilsa+l86hlN1mporA8wKv7A92bdMqSvxt2QqjkDwcaH6WO5J7iZXBGA10pJuRsetFzJlhIf+fElChs7Bp5bCEg=="}
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? ORDER BY "clients"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-29 03:04:00 -0400
+Processing by VisitorsController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/clients/sign_in" for 127.0.0.1 at 2017-04-29 03:04:00 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (15.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 95ms (Views: 92.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients/sign_up" for 127.0.0.1 at 2017-04-29 03:04:46 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (14.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 109ms (Views: 107.0ms | ActiveRecord: 0.0ms)
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429054453) do
+ActiveRecord::Schema.define(version: 20170429061429) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20170429054453) do
     t.datetime "updated_at", null: false
     t.integer  "client_id"
     t.index ["client_id"], name: "index_events_on_client_id"
+  end
+
+  create_table "teacher_client_mappings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "teacher_id"
+    t.integer  "client_id"
   end
 
   create_table "teachers", force: :cascade do |t|

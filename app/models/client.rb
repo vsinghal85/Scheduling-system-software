@@ -5,6 +5,8 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :events
-
+   has_one :teacher_client_mapping
+   has_one :teacher,through: :teacher_client_mapping
+      
 
 end
