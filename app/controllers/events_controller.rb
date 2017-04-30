@@ -2,14 +2,10 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 
-  def index
-  
- 
-    
+  def index 
     if current_client
     @events=current_client.events.all
    end
-   
    if current_teacher
    @events=current_teacher.clients.all.first.events.all
    @clients=current_teacher.clients.all
@@ -17,11 +13,6 @@ class EventsController < ApplicationController
     @events=@events.or(client.events.all)
   end
    end
- 
- 
-
-   
-    
     end  
     
 

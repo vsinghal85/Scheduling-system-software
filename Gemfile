@@ -9,10 +9,12 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
-
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
