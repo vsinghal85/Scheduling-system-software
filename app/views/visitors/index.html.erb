@@ -1,3 +1,10 @@
 <div class="calendar"></div>
 
+<% if current_client %>
 <%= link_to "Logout",destroy_client_session_path,method: :delete %>
+<% end %>
+
+
+<% if current_teacher %>
+<%= link_to "Logout",destroy_teacher_session_path,method: :delete %>
+<% end %>

@@ -1,10 +1,33 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
- before_action :authenticate_client!, except: [:show]
+
 
   def index
-    @events = current_client.events.all
+  
+ 
+    
+    if current_client
+    @events=current_client.events.all
+   end
+   
+   if current_teacher
+   @events=current_teacher.clients.all.first.events.all
+   @clients=current_teacher.clients.all
+   @clients.each do |client|
+    @events=@events.or(client.events.all)
   end
+   end
+ 
+ 
+
+   
+    
+    end  
+    
+
+    
+
+  
 
   def show
   end
