@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
-gem "rails_admin_import", "~> 1.2"
+gem "rails_admin_import", "~> 2.0"
 group :development, :test do
   gem 'byebug', platform: :mri
 end

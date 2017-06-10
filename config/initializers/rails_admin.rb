@@ -43,7 +43,7 @@ config.authorize_with do
     edit
     delete
     show_in_app
-
+    
     ## With an audit adapter, you can add:
     # history_index
     # history_show

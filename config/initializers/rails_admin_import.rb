@@ -22,4 +22,27 @@ RailsAdmin.config do |config|
       exclude_fields :secret_token
     end
   end
+
+
+
+  config.model 'Client' do
+    import do
+      mapping_key :email
+    end
+  end
+  
+  config.model 'Teacher' do
+    import do
+      mapping_key :email
+    end
+  end
+
+  config.model 'Event' do 
+    import do
+      mapping_key :title
+    end
+    # ...
+  end
+
+
 end
