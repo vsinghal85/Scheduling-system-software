@@ -14,5 +14,6 @@
  *= require daterangepicker
  *= require_tree .
  *= require_self
+ *= require recurring_select
  */
 

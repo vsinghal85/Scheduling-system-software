@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0'
+gem 'ice_cube'
+gem 'schedulable'
+gem 'simple_form'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -29,6 +32,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'faker'
-
+gem 'recurring_select'
 # gem 'fullcalendar-rails'
 # gem 'momentjs-rails'

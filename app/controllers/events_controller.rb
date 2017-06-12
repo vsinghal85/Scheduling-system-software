@@ -37,11 +37,15 @@ class EventsController < ApplicationController
   end
 
   def update
+    if(!current_teacher)
     @event.update(event_params)
+  end
   end
 
   def destroy
+    if(!current_teacher)
     @event.destroy
+  end
   end
 
   private
@@ -50,6 +54,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :date_range, :start, :end, :color)
+      #params.require(:event).permit(:title, :date_range, :start, :end, :color)
+      params.require(:event).permit( :title, :date_range, :start, :end, :color,schedule_attributes: Schedulable::ScheduleSupport.param_names)
     end
 end
