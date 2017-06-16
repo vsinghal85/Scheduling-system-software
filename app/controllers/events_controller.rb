@@ -3,16 +3,34 @@ class EventsController < ApplicationController
 
 
   def index 
+    
+    if current_teacher and current_teacher.admin and params[:client_id]!=nil
+       
+      client=Client.find(params[:client_id])
+     @events=client.events.all
+     gon.my_var=@events
+    # render json:@events.as_json()
+     #return redirect_to root_path
+       # index.html.erb
+    end    
+
     if current_client
     @events=current_client.events.all
    end
-   if current_teacher
+   
+   if current_teacher and @events==nil 
+    
    @events=current_teacher.clients.all.first.events.all
    @clients=current_teacher.clients.all
    @clients.each do |client|
     @events=@events.or(client.events.all)
+  
+
   end
+  
+
    end
+   gon.my_var=@events
     end  
     
 
@@ -21,6 +39,18 @@ class EventsController < ApplicationController
   
 
   def show
+
+    if current_teacher and current_teacher.admin and params[:client_id]!=nil
+       
+      client=Client.find(params[:client_id])
+    @events=client.events.all
+    end    
+
+    respond_to do |format|
+    
+    format.json { render json: @events.as_json() }
+    end
+
   end
 
   def new

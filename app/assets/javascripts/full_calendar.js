@@ -12,7 +12,10 @@ initialize_calendar = function() {
       selectHelper: true,
       editable: true,
       eventLimit: true,
-       events: '/events.json',
+      events: '/events.json',
+ //   <%  %>
+//$('#mycontainer').data('source')
+ 
 
       select: function(start, end) {
         $.getScript('/events/new', function() {
@@ -23,6 +26,12 @@ initialize_calendar = function() {
         });
 
         calendar.fullCalendar('unselect');
+      },
+     
+    
+  
+      testFunction: function(data){
+       events=gon.my_var
       },
 
       eventDrop: function(event, delta, revertFunc) {
